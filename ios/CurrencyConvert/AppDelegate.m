@@ -15,10 +15,16 @@
 //新建一个bundle文件夹 打包命令 react-native bundle --entry-file ./index.js --bundle-output ./ios/bundle/index.ios.jsbundle --platform ios --assets-dest ./ios/bundle --dev false
 //node.js 服务器地址见ip.txt 如果改成localhost就走本地 端口默认5000
 //ip.txt
-//RCTBundleURLProviderUpdatedNotification.m (端口)
+//RCTBundleURLProvider.m kRCTBundleURLProviderDefaultPort(端口)
+//刷新URL设置后的通知 RCTBundleURLProviderUpdatedNotification
 //RCTMultipartDataTask.m (- (void)startTask)
+
+//如果想做增量更新bundle 或者按照版本更新 可以用codePush 或者 pushy http://update.reactnative.cn/home & react-native-pushy https://github.com/reactnativecn/react-native-pushy/blob/master/README.md
+//当然也还是可以自己造一个
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//  [[NSUserDefaults standardUserDefaults] setObject:@"immense-meadow-71083.herokuapp.com" forKey:@"RCT_jsLocation"];
+//  [[RCTBundleURLProvider sharedSettings] setJsLocation:@"immense-meadow-71083.herokuapp.com"]; //动态修改的
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"currency/index.ios" fallbackResource:nil];
